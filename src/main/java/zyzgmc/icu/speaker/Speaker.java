@@ -11,17 +11,18 @@ import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.text.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Plugin(
         id = "speaker",
         name = "Speaker",
         description = "Sponge端的自动广播插件",
-        url = "zyzgmc.icu",
+        url = "https://zyzgmc.icu",
         authors = {
                 "EricLiu"
         },
-        dependencies = {
-                @Dependency(id = "None")
-        }
+        dependencies = {}
 )
 public class Speaker {
 
@@ -59,9 +60,10 @@ public class Speaker {
         CommandSpec set = CommandSpec.builder()
                 .description(Text.of("设置公告信息"))
                 .permission("speaker.command.set")
-                .arguments(
-                        GenericArguments.onlyOne(GenericArguments.integer(Text.of("<序号>"))),
-                        GenericArguments.remainingJoinedStrings(Text.of("<公告内容>"))
+                .arguments(GenericArguments.seq(
+                        GenericArguments.onlyOne(GenericArguments.integer(Text.of("序号"))),
+                        GenericArguments.remainingJoinedStrings(Text.of("公告内容"))
+                        )
                 )
                 .executor(new SetMessage())
                 .build();
@@ -75,15 +77,21 @@ public class Speaker {
         CommandSpec speaker = CommandSpec.builder()
                 .description(Text.of("显示版本信息"))
                 .permission("speaker.command.base")
-                .child(set,"s")
+                .child(set,"set","s")
                 .child(help)
-                .child(mode,"m")
-                .child(interval,"i")
-                .child(fixtime,"f")
+                .child(mode,"mode","m")
+                .child(interval,"interval","i")
+                .child(fixtime,"fixtime","f")
                 .executor(new Vmessage())
                 .build();
 
 
-        Sponge.getCommandManager().register(instance, speaker,"spk")
+        Sponge.getCommandManager().register(instance, speaker,"speaker","spk");
+
+        logger.info("成功加载插件");
+
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        logger.info("当前时间是"+format.format(date));
     }
 }
