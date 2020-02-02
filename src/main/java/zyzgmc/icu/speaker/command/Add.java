@@ -23,16 +23,17 @@ public class Add implements CommandExecutor {
         String Message = args.<String>getOne(Text.of("公告内容")).get();
         String[] Default = {"12:00"};
         if(!Config.rootNode.getNode("All",Name).isVirtual()){
-            src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("名为 &c%s &r的公告已存在，使用&e/spk set 名称 内容 &r来修改它",Name)));
+            src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("名为 &c%s &r的公告已存在，使用&e/spk set content 名称 内容 &r来修改它",Name)));
         }else {
             src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("&a添加公告&e%s&a,内容为&r%s", Name, Message)));
             Config.rootNode.getNode("All", Name, "Content").setValue(Message);
             Config.rootNode.getNode("All", Name, "Enable").setValue(true);
-            Config.rootNode.getNode("All", Name, "ModeCode").setValue(2);
-            Config.rootNode.getNode("All", Name, "Interval").setValue(45);
+            Config.rootNode.getNode("All", Name, "ModeCode").setValue("interval");
+            Config.rootNode.getNode("All", Name, "Interval").setValue("45");
             Config.rootNode.getNode("All", Name, "FixTime").setValue(Arrays.asList(Default));
             try {
                 Config.save();
+                Config.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -18,6 +18,12 @@ public class Remove implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
 
+        try {
+            Config.load();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
         String Name = args.<String>getOne("公告名称").get();
 
         if(Config.rootNode.getNode("All",Name).isVirtual()){
@@ -41,7 +47,7 @@ public class Remove implements CommandExecutor {
                 .permission("speaker.command.remove")
                 .executor(new Remove())
                 .arguments(
-                        GenericArguments.onlyOne(GenericArguments.string(Text.of("公告名称")))
+                        GenericArguments.onlyOne(GenericArguments.withSuggestions(GenericArguments.string(Text.of("公告名称")),Config.nameCompletion))
                 )
                 .build();
     }

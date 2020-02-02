@@ -2,9 +2,13 @@ package zyzgmc.icu.speaker;
 
 import com.google.common.reflect.TypeToken;
 import com.google.inject.Inject;
+import ninja.leaping.configurate.objectmapping.ObjectMappingException;
+import ninja.leaping.configurate.objectmapping.Setting;
+import ninja.leaping.configurate.objectmapping.serialize.ConfigSerializable;
 import org.slf4j.Logger;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.CommandManager;
 import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
@@ -15,14 +19,13 @@ import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import zyzgmc.icu.speaker.command.*;
+import zyzgmc.icu.speaker.command.Set;
 import zyzgmc.icu.speaker.config.Config;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Plugin(
         id = "speaker",
@@ -36,8 +39,9 @@ import java.util.List;
 )
 public class Speaker {
 
+
     @Inject
-    public Logger logger;
+    Logger logger;
 
     public static ConsoleSource ConSrc;
     public static Server server;
@@ -46,10 +50,12 @@ public class Speaker {
     @ConfigDir(sharedRoot = false)
     public File folder;
 
+
     @Listener
     public void reload(GameReloadEvent event) throws IOException {
         Config.load();
     }
+
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
@@ -63,7 +69,7 @@ public class Speaker {
         CommandSpec speaker = CommandSpec.builder()
                 .description(Text.of("显示版本信息"))
                 .permission("speaker.command.base")
-                .child(SetMessage.build(),"set")
+                .child(Set.build(),"set")
                 .child(Help.build(),"help")
                 .child(Add.build(),"add")
                 .child(ListCmd.build(), "list")
@@ -73,12 +79,20 @@ public class Speaker {
                 .executor(new Vmessage())
                 .build();
 
+
         Sponge.getCommandManager().register(this, speaker,"speaker","spk");
         logger.info("插件成功加载");
-        System.out.println(Config.rootNode.getNode("All").getValue());
+
 
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         logger.info("当前时间是"+format.format(date));
+    }
+
+    public static void circle(String name, Integer interval){
+        while (Config.rootNode.getNode("All",name,"Enable").getBoolean()){
+
+        }
+
     }
 }
