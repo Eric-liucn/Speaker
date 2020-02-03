@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46a9dc1c-6e57-422d-96ff-5d2e98308043" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/childCommandofSet/contentChange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/childCommandofSet/fixTimeChange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/childCommandofSet/intervalChange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/childCommandofSet/modeChange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/tasks/intervalTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -14,13 +9,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/Speaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/Speaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/Add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/Help.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/ListCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/ListCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/Remove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/Remove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/SetMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/Set.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/Show.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/command/Show.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/tasks/intervalTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/zyzgmc/icu/speaker/tasks/intervalTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +25,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view />
       </state>
     </system>
@@ -159,46 +152,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="702" y="225" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1580483203229" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1580651917277">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1358" height="269" key="GridCell.Tab.0.bottom" timestamp="1580663125827">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1580651917277" />
-    <state width="1358" height="269" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1580574758867" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1580651917277">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1358" height="269" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1580663125827" />
+    <state width="1358" height="269" key="GridCell.Tab.0.center" timestamp="1580663125826">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1580651917277" />
-    <state width="1358" height="269" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1580574758867" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1580651917277">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1358" height="269" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1580663125826" />
+    <state width="1358" height="269" key="GridCell.Tab.0.left" timestamp="1580663125826">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1580651917277" />
-    <state width="1358" height="269" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1580574758866" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1580651917277">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1358" height="269" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1580663125826" />
+    <state width="1358" height="269" key="GridCell.Tab.0.right" timestamp="1580663125827">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1580651917277" />
-    <state width="1358" height="269" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1580574758867" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1580651917155">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1358" height="269" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1580663125827" />
+    <state width="1358" height="269" key="GridCell.Tab.1.bottom" timestamp="1580663125698">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1580651917155" />
-    <state width="1358" height="269" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1580574758742" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1580651917154">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1358" height="269" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1580663125698" />
+    <state width="1358" height="269" key="GridCell.Tab.1.center" timestamp="1580663125698">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1580651917154" />
-    <state width="1358" height="269" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1580574758742" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1580651917154">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1358" height="269" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1580663125698" />
+    <state width="1358" height="269" key="GridCell.Tab.1.left" timestamp="1580663125698">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1580651917154" />
-    <state width="1358" height="269" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1580574758741" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1580651917155">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1358" height="269" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1580663125698" />
+    <state width="1358" height="269" key="GridCell.Tab.1.right" timestamp="1580663125698">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1580651917155" />
-    <state width="1358" height="269" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1580574758742" />
+    <state width="1358" height="269" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1580663125698" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1580522602515">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -219,10 +212,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1580560228353" />
-    <state x="533" y="238" width="894" height="802" key="search.everywhere.popup" timestamp="1580651917067">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="400" y="224" width="670" height="676" key="search.everywhere.popup" timestamp="1580663125592">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="533" y="238" width="894" height="802" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1580651917067" />
-    <state x="400" y="224" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580574758611" />
+    <state x="400" y="224" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580663125592" />
   </component>
 </project>
