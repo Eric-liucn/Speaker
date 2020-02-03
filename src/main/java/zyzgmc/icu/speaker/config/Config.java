@@ -17,7 +17,6 @@ public class Config {
     public static File folder, config;
     public static ConfigurationLoader<CommentedConfigurationNode> loader;
     public static CommentedConfigurationNode rootNode;
-    //public static Map<String, String> nameMap = new HashMap<String,String>();
     public static List<String> nameCompletion =new ArrayList<String>();
 
 
@@ -40,7 +39,7 @@ public class Config {
             loader.save(rootNode);
         }
         rootNode = loader.load();
-        // 构建一个包含所有公共名称的Map用于指令补全
+        // 构建一个包含所有公共名称的List用于指令补全
         for (Object name:rootNode.getNode("All").getChildrenMap().keySet()
         ) {String nameString = (String) name;
             nameCompletion.add(nameString);
@@ -63,8 +62,8 @@ public class Config {
     public static void addValue(){
         rootNode.getNode("All","欢迎","Content").setValue("&e欢迎使用Speaker插件");
         rootNode.getNode("All","欢迎","Enable").setValue(true);
-        rootNode.getNode("All","欢迎","ModeCode").setValue("fix");
-        rootNode.getNode("All","欢迎","Interval").setValue("45s");
+        rootNode.getNode("All","欢迎","ModeCode").setValue("fix").setComment("fix --> 固定时间模式\ninterval --> 间隔时间模式");
+        rootNode.getNode("All","欢迎","Interval").setValue(45).setComment("单位：秒");
         rootNode.getNode("All","欢迎","FixTime").setValue(Arrays.asList(realtime));
     }
 

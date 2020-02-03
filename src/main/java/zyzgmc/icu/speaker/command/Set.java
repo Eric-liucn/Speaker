@@ -8,11 +8,7 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.serializer.TextSerializers;
-import zyzgmc.icu.speaker.command.childCommandofSet.contentChange;
-import zyzgmc.icu.speaker.command.childCommandofSet.fixTimeChange;
-import zyzgmc.icu.speaker.command.childCommandofSet.intervalChange;
-import zyzgmc.icu.speaker.config.Config;
-import zyzgmc.icu.speaker.command.childCommandofSet.modeChange;
+import zyzgmc.icu.speaker.command.childCommandofSet.*;
 
 public class Set implements CommandExecutor {
     @Override
@@ -30,6 +26,7 @@ public class Set implements CommandExecutor {
                 .child(contentChange.build(),"content")
                 .child(intervalChange.build(),"interval")
                 .child(fixTimeChange.build(),"fix")
+                .child(enableChange.build(),"status")
                 .executor(new Set())
                 .build();
     }

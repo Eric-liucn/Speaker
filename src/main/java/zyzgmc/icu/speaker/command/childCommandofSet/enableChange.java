@@ -14,43 +14,46 @@ import zyzgmc.icu.speaker.config.Config;
 
 import java.io.IOException;
 
-public class intervalChange implements CommandExecutor {
+public class enableChange implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
 
         String name = args.<String>getOne("公告名称").get();
-        Integer newInterval = args.<Integer>getOne("间隔时间").get();
+        Boolean status = args.<Boolean>getOne("true/false").get();
         if(!Config.rootNode.getNode("All",name).isVirtual()){
-            Config.rootNode.getNode("All",name,"Interval").setValue(newInterval);
+            Config.rootNode.getNode("All",name,"Enable").setValue(status);
             try{
                 Config.save();
                 Config.load();
             }catch (IOException e){
                 e.printStackTrace();
             }
-            src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("&a已将公告 &e%s &a的间隔时间改为 &e%d 秒",name,newInterval)));
+            src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("&a已将公告 &e%s &a的开启状态改为 %b",name,status)));
         }else {
             src.sendMessage(Text.of(TextColors.RED,"该公告不存在，请检查名称！"));
         }
 
-
         return CommandResult.success();
     }
+
     public static CommandSpec build(){
         return CommandSpec.builder()
-                .description(Text.of("修改指定公告的间隔时间"))
-                .permission("speaker.command.set.content")
+                .description(Text.of("改变公告的状态：开启/关闭"))
                 .arguments(
                         GenericArguments.seq(
                                 GenericArguments.onlyOne(
                                         GenericArguments.withSuggestions(
-                                                GenericArguments.string(Text.of("公告名称")), Config.nameCompletion
+                                                GenericArguments.string(Text.of("公告名称")),
+                                                Config.nameCompletion
                                         )
                                 ),
-                                GenericArguments.onlyOne(GenericArguments.integer(Text.of("间隔时间")))
+                                GenericArguments.onlyOne(
+                                        GenericArguments.bool(Text.of("true/false"))
+                                )
                         )
                 )
-                .executor(new intervalChange())
+                .executor(new enableChange())
+                .permission("speaker.command.status")
                 .build();
     }
 }

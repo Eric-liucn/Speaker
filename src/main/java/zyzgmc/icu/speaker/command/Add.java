@@ -29,7 +29,7 @@ public class Add implements CommandExecutor {
             Config.rootNode.getNode("All", Name, "Content").setValue(Message);
             Config.rootNode.getNode("All", Name, "Enable").setValue(true);
             Config.rootNode.getNode("All", Name, "ModeCode").setValue("interval");
-            Config.rootNode.getNode("All", Name, "Interval").setValue("45");
+            Config.rootNode.getNode("All", Name, "Interval").setValue(45);
             Config.rootNode.getNode("All", Name, "FixTime").setValue(Arrays.asList(Default));
             try {
                 Config.save();
