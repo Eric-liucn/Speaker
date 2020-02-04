@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import static zyzgmc.icu.speaker.tasks.InitialTimer.fixTimerMap;
@@ -33,7 +34,7 @@ public class fixTimeChange implements CommandExecutor {
         String[] testList = FixTime.split("/");
         for (String i:testList
              ) {
-            if (timeIsValid(i) == true) {
+            if (timeIsValid(i)) {
 
             }else {
                 return false;
@@ -60,7 +61,7 @@ public class fixTimeChange implements CommandExecutor {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if(Config.rootNode.getNode("All",name,"ModeCode").getString().equals("fix"))
+                if(Objects.equals(Config.rootNode.getNode("All", name, "ModeCode").getString(), "fix"))
                 {
                     src.sendMessage(Text.of(TextColors.RED,"该公告目前是间隔时间模式,改动将不会影响当前公告任务"));
                     FixTimerCancel.cancelFixTimer(name);
