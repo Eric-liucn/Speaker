@@ -39,6 +39,9 @@ public class Config {
             loader.save(rootNode);
         }
         rootNode = loader.load();
+        if(Config.rootNode.getNode("All").isVirtual()){
+            addValue();
+        }else {}
         // 构建一个包含所有公共名称的List用于指令补全
         for (Object name:rootNode.getNode("All").getChildrenMap().keySet()
         ) {String nameString = (String) name;

@@ -1,5 +1,6 @@
 package zyzgmc.icu.speaker.command.childCommandofSet;
 
+import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -11,12 +12,16 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import zyzgmc.icu.speaker.config.Config;
+import zyzgmc.icu.speaker.tasks.FixTimeTask;
+import zyzgmc.icu.speaker.tasks.FixTimerCancel;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static zyzgmc.icu.speaker.tasks.InitialTimer.fixTimerMap;
 
 public class fixTimeChange implements CommandExecutor {
 
@@ -55,7 +60,18 @@ public class fixTimeChange implements CommandExecutor {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("&a已将公告 &e%s &a的间隔时间改为 &e%s", name, newFixTime)));
+                if(Config.rootNode.getNode("All",name,"ModeCode").getString().equals("fix"))
+                {
+                    src.sendMessage(Text.of(TextColors.RED,"该公告目前是间隔时间模式,改动将不会影响当前公告任务"));
+                    FixTimerCancel.cancelFixTimer(name);
+                    try {
+                        fixTimerMap.put(name,FixTimeTask.fixTask(name));
+                    } catch (ObjectMappingException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("&a已将公告 &e%s &a的广播时间点改为 &e%s", name, newFixTime)));
             } else {
                 src.sendMessage(Text.of(TextColors.RED, "该公告不存在，请检查名称！"));
             }

@@ -11,9 +11,12 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import zyzgmc.icu.speaker.config.Config;
+import zyzgmc.icu.speaker.tasks.IntervalTask;
 
 import java.io.IOException;
 import java.util.Arrays;
+
+import static zyzgmc.icu.speaker.tasks.InitialTimer.timerMap;
 
 public class Add implements CommandExecutor {
     @Override
@@ -37,6 +40,7 @@ public class Add implements CommandExecutor {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            timerMap.put(Name,IntervalTask.intervalTask(Name));
         }
 
         return CommandResult.success();
