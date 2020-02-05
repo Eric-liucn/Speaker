@@ -63,13 +63,14 @@ public class fixTimeChange implements CommandExecutor {
                 }
                 if(Objects.equals(Config.rootNode.getNode("All", name, "ModeCode").getString(), "fix"))
                 {
-                    src.sendMessage(Text.of(TextColors.RED,"该公告目前是间隔时间模式,改动将不会影响当前公告任务"));
                     FixTimerCancel.cancelFixTimer(name);
                     try {
                         fixTimerMap.put(name,FixTimeTask.fixTask(name));
                     } catch (ObjectMappingException e) {
                         e.printStackTrace();
                     }
+                }else {
+                    src.sendMessage(Text.of(TextColors.RED,"该公告目前是间隔时间模式,改动将不会影响当前公告任务"));
                 }
 
                 src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("&a已将公告 &e%s &a的广播时间点改为 &e%s", name, newFixTime)));

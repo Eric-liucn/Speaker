@@ -14,6 +14,7 @@ import zyzgmc.icu.speaker.tasks.IntervalTask;
 import zyzgmc.icu.speaker.tasks.TimerTaskCancel;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import static zyzgmc.icu.speaker.tasks.InitialTimer.timerMap;
 
@@ -36,14 +37,23 @@ public class intervalChange implements CommandExecutor {
                 e.printStackTrace();
             }
 
+            if(Objects.requireNonNull(Config.rootNode.getNode("All", name, "ModeCode").getString()).equals("interval")){
+                TimerTaskCancel.cancelTask(name);
+                timerMap.put(name,IntervalTask.intervalTask(name));
+            }else {
+                src.sendMessage(
+                        TextSerializers.FORMATTING_CODE.deserialize(
+                                "&c该公告目前是固定时间点模式,改动将不会影响当前公告任务"
+                        )
+                );
+            }
+
             src.sendMessage(
                     TextSerializers.FORMATTING_CODE.deserialize(
                     String.format("&a已将公告 &e%s &a的间隔时间改为 &e%d 秒",name,newInterval)
                     )
             );
 
-            TimerTaskCancel.cancelTask(name);
-            timerMap.put(name,IntervalTask.intervalTask(name));
 
         }else {
             src.sendMessage(Text.of(TextColors.RED,"该公告不存在，请检查名称！"));

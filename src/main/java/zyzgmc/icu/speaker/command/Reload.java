@@ -9,8 +9,11 @@ import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import zyzgmc.icu.speaker.config.Config;
+import zyzgmc.icu.speaker.tasks.InitialTimer;
 
 import java.io.IOException;
+
+import static zyzgmc.icu.speaker.tasks.InitialTimer.*;
 
 public class Reload implements CommandExecutor {
     @Override
@@ -20,6 +23,19 @@ public class Reload implements CommandExecutor {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        for(String key:timerMap.keySet()){
+            timerMap.get(key).cancel();
+            timerMap.get(key).purge();
+        }
+
+        for(String key:fixTimerMap.keySet()){
+            for(String k:fixTimerMap.get(key).keySet()){
+                fixTimerMap.get(key).get(k).cancel();
+                fixTimerMap.get(key).get(k).cancel();
+            }
+        }
+
+        InitialTimer.initialTask();
 
         src.sendMessage(Text.of(TextColors.GREEN,"插件重载成功"));
 
