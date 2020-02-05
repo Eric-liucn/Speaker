@@ -23,8 +23,14 @@ public class Help implements CommandExecutor {
         help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker remove &d---> &b删除一条公告 "));
         help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker show &d---> &b显示一条公告的详情 "));
         help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker list &d---> &b显示所有已经公告 "));
-        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set &d---> &b设置一条公告 "));
-        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker reload &d---> &b重制插件 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set interval&d---> &b设置一条公告的间隔时间 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set fix&d---> &b设置一条公告的固定时间点 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set enable&d---> &b设置一条公告的开启状态 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set mode&d---> &b设置一条公告的播放模式 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set cmd&d---> &b设置一条公告点击指令（点击打开链接必须设置为空） "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set url&d---> &b设置一条公告点击网址（点击执行命令必须设置为空） "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set hover&d---> &b设置一条公告鼠标悬浮信息 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker reload &d---> &b重置插件 "));
 
         PaginationList.builder()
                 .contents(help)

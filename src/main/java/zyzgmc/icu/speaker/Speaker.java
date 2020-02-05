@@ -10,6 +10,7 @@ import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.service.economy.EconomyService;
 import org.spongepowered.api.service.pagination.PaginationList;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
@@ -26,6 +27,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static zyzgmc.icu.speaker.tasks.InitialTimer.fixTimerMap;
+import static zyzgmc.icu.speaker.tasks.InitialTimer.timerMap;
+
 @Plugin(
         id = "speaker",
         name = "Speaker",
@@ -40,6 +44,10 @@ public class Speaker {
 
     //构造一个实例
     public static Speaker instance;
+
+    public static EconomyService economyService;
+
+
 
     @Inject
     private PluginContainer container;
@@ -64,7 +72,12 @@ public class Speaker {
 
     @Listener
     public void reload(GameReloadEvent event) throws IOException {
-        Config.load();
+        try {
+            Config.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -106,6 +119,19 @@ public class Speaker {
                 .sendTo(Sponge.getServer().getConsole());
 
         InitialTimer.initialTask();
+
+
+        Optional<EconomyService> serviceOpt = Sponge.getServiceManager().provide(EconomyService.class);
+        if (!serviceOpt.isPresent()) {
+            PaginationList.builder()
+                    .title(Text.of(TextColors.YELLOW,"注意"))
+                    .contents(Text.of(TextColors.RED,"Speaker未检测到经济插件，部分功能将无法使用"))
+                    .padding(Text.of(TextColors.GREEN,"="))
+                    .sendTo(Sponge.getServer().getConsole());
+
+        }else {
+            economyService = serviceOpt.get();
+        }
 
         }
 

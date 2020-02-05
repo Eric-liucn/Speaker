@@ -26,7 +26,10 @@ public class Set implements CommandExecutor {
                 .child(contentChange.build(),"content")
                 .child(intervalChange.build(),"interval")
                 .child(fixTimeChange.build(),"fix")
-                .child(enableChange.build(),"status")
+                .child(enableChange.build(),"enable")
+                .child(hoverChange.build(),"hover")
+                .child(urlChange.build(),"url")
+                .child(cmdChange.build(),"cmd")
                 .executor(new Set())
                 .build();
     }

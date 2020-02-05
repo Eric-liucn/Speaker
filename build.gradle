@@ -8,9 +8,15 @@ version = pluginVersion
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
 dependencies {
-    compileOnly 'org.spongepowered:spongeapi:7.1.0'
+    compile 'org.spongepowered:spongeapi:7.1.0'
     annotationProcessor 'org.spongepowered:spongeapi:7.1.0'
+    compile 'com.github.rojo8399:PlaceholderAPI:master-SNAPSHOT'
 }
 
 sponge.plugin.id = pluginId

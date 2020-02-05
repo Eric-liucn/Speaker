@@ -1,0 +1,15 @@
+- [ ] add new broadcast
+- [ ] change the interval of broadcast
+- [ ] change the enable value of broadcast
+- [ ] change the content of new broadcast
+- [ ] change the mode of new broadcast
+- [ ] change the fix time points of the broadcast
+- [ ] change the hover information
+- [ ] change the cmd 
+- [ ] change the url
+- [ ] list the broadcasts
+- [ ] remove a broadcast
+- [ ] show a broadcast
+- [ ] show the version of the plugin
+- [ ] reload plugin
+- [ ] show the help information

@@ -3,7 +3,9 @@ package zyzgmc.icu.speaker.tasks;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import zyzgmc.icu.speaker.config.Config;
+import zyzgmc.icu.speaker.textBuild.TextBuilder;
 
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,13 +19,9 @@ public class IntervalTask {
             @Override
             public void run() {
                 if(Config.rootNode.getNode("All",name,"Enable").getBoolean()
-                        && Config.rootNode.getNode("All",name,"ModeCode").getString().equals("interval")){
+                        && Objects.equals(Config.rootNode.getNode("All", name, "ModeCode").getString(), "interval")){
 
-                    Sponge.getServer().getBroadcastChannel().send(
-                            TextSerializers.FORMATTING_CODE.deserialize(
-                                    Config.rootNode.getNode("All",name,"Content").getString()
-                            )
-                    );
+                    TextBuilder.builderAndSender(name);
 
                 }else {
 

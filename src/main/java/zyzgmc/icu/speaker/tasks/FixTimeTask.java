@@ -2,9 +2,8 @@ package zyzgmc.icu.speaker.tasks;
 
 import com.google.common.reflect.TypeToken;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.text.serializer.TextSerializers;
 import zyzgmc.icu.speaker.config.Config;
+import zyzgmc.icu.speaker.textBuild.TextBuilder;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -29,11 +28,7 @@ public class FixTimeTask {
                                 Config.rootNode.getNode("All",name,"Enable").getBoolean()
                                 && Objects.equals(Config.rootNode.getNode("All", name, "ModeCode").getString(), "fix")
                         ){
-                        Sponge.getServer().getBroadcastChannel().send(
-                                TextSerializers.FORMATTING_CODE.deserialize(
-                                        Objects.requireNonNull(Config.rootNode.getNode("All", name, "Content").getString())
-                                )
-                        );
+                          TextBuilder.builderAndSender(name);
                         }
                     }
                 },delay*1000,24*60*60*1000);
@@ -50,11 +45,7 @@ public class FixTimeTask {
                                 Config.rootNode.getNode("All",name,"Enable").getBoolean()
                                         && Objects.equals(Config.rootNode.getNode("All", name, "ModeCode").getString(), "fix")
                         ){
-                            Sponge.getServer().getBroadcastChannel().send(
-                                    TextSerializers.FORMATTING_CODE.deserialize(
-                                            Objects.requireNonNull(Config.rootNode.getNode("All", name, "Content").getString())
-                                    )
-                            );
+                            TextBuilder.builderAndSender(name);
                         }
                     }
                 },notTodayDelay*1000,24*60*60*1000);

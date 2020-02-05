@@ -34,6 +34,9 @@ public class Add implements CommandExecutor {
             Config.rootNode.getNode("All", Name, "ModeCode").setValue("interval");
             Config.rootNode.getNode("All", Name, "Interval").setValue(45);
             Config.rootNode.getNode("All", Name, "FixTime").setValue(Arrays.asList(Default));
+            Config.rootNode.getNode("All", Name, "Hover").setValue("使用 /spk set hover 公告名称 内容  来设置鼠标悬浮公告时显示的信息");
+            Config.rootNode.getNode("All", Name, "Url").setValue("https://www.baidu.com");
+            Config.rootNode.getNode("All", Name, "Cmd").setValue("/say 使用/spk set cmd 公告名称 指令  来设置点击公告时触发的指令");
             try {
                 Config.save();
                 Config.load();
