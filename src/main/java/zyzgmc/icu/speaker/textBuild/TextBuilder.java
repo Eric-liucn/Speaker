@@ -1,6 +1,8 @@
 package zyzgmc.icu.speaker.textBuild;
 
 
+import me.rojo8399.placeholderapi.Placeholder;
+import me.rojo8399.placeholderapi.PlaceholderService;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.entity.living.player.Player;
@@ -26,12 +28,15 @@ import static zyzgmc.icu.speaker.Speaker.economyService;
 
 public class TextBuilder {
 
+    public  static PlaceholderService s=Sponge.getServiceManager().provideUnchecked(PlaceholderService.class);
+    
 
     public static void builderAndSender(String name){
         String content = Config.rootNode.getNode("All", name, "Content").getString();
         String hoverText = Config.rootNode.getNode("All", name, "Hover").getString();
         String url = Config.rootNode.getNode().getNode("All", name, "Url").getString();
         String cmd = Config.rootNode.getNode("All", name, "Cmd").getString();
+
 
         //Iterator<Player> playerIterator = Speaker.ge
         if(!Sponge.getServer().getOnlinePlayers().isEmpty()) {
@@ -84,11 +89,6 @@ public class TextBuilder {
 
             }
 
-            Sponge.getServer().getConsole().sendMessage(
-                    TextSerializers.FORMATTING_CODE.deserialize(
-                            content
-                    )
-            );
         }
 
     }
@@ -106,6 +106,8 @@ public class TextBuilder {
             UniqueAccount acc = uOpt.get();
             str=str.replace("{Balance}", acc.getDefaultBalance(economyService.getDefaultCurrency()).toString());
         }
+        str = s.replacePlaceholders(str,(Object)null, ((Object)null)).toString();
+
 
         return str;
     }

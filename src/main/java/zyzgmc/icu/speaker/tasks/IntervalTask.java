@@ -23,6 +23,12 @@ public class IntervalTask {
 
                     TextBuilder.builderAndSender(name);
 
+                    Sponge.getServer().getConsole().sendMessage(
+                            TextSerializers.FORMATTING_CODE.deserialize(
+                                    Config.rootNode.getNode("All",name,"Content").getString()
+                            )
+                    );
+
                 }else {
 
                 }

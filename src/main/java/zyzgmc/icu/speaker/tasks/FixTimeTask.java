@@ -2,6 +2,8 @@ package zyzgmc.icu.speaker.tasks;
 
 import com.google.common.reflect.TypeToken;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import zyzgmc.icu.speaker.config.Config;
 import zyzgmc.icu.speaker.textBuild.TextBuilder;
 
@@ -29,6 +31,12 @@ public class FixTimeTask {
                                 && Objects.equals(Config.rootNode.getNode("All", name, "ModeCode").getString(), "fix")
                         ){
                           TextBuilder.builderAndSender(name);
+                          Sponge.getServer().getConsole().sendMessage(
+                                  TextSerializers.FORMATTING_CODE.deserialize(
+                                          Objects.requireNonNull(Config.rootNode.getNode("All", name, "Content").getString())
+                                  )
+                          );
+
                         }
                     }
                 },delay*1000,24*60*60*1000);
@@ -46,6 +54,11 @@ public class FixTimeTask {
                                         && Objects.equals(Config.rootNode.getNode("All", name, "ModeCode").getString(), "fix")
                         ){
                             TextBuilder.builderAndSender(name);
+                            Sponge.getServer().getConsole().sendMessage(
+                                    TextSerializers.FORMATTING_CODE.deserialize(
+                                            Objects.requireNonNull(Config.rootNode.getNode("All", name, "Content").getString())
+                                    )
+                            );
                         }
                     }
                 },notTodayDelay*1000,24*60*60*1000);
