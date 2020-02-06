@@ -16,7 +16,7 @@ allprojects {
 dependencies {
     compile 'org.spongepowered:spongeapi:7.1.0'
     annotationProcessor 'org.spongepowered:spongeapi:7.1.0'
-    compile 'com.github.rojo8399:PlaceholderAPI:master-SNAPSHOT'
+    compile 'com.github.rojo8399:PlaceholderAPI:4.4'
 }
 
 sponge.plugin.id = pluginId

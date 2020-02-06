@@ -24,6 +24,7 @@ import java.util.Timer;
 
 import static zyzgmc.icu.speaker.tasks.FixTimeTask.fixTask;
 import static zyzgmc.icu.speaker.tasks.InitialTimer.fixTimerMap;
+import static zyzgmc.icu.speaker.tasks.InitialTimer.timerMap;
 
 public class modeChange implements CommandExecutor {
     @Override
@@ -64,7 +65,7 @@ public class modeChange implements CommandExecutor {
                    }
                }else {
                    FixTimerCancel.cancelFixTimer(name);
-                   IntervalTask.intervalTask(name);
+                   timerMap.put(name,IntervalTask.intervalTask(name));
                }
 
            }

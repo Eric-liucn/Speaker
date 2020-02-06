@@ -34,7 +34,6 @@ public class Reload implements CommandExecutor {
         }
         fixTimerMap.clear();
 
-        InitialTimer.initialTask();
 
         try {
             Config.save();

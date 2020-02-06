@@ -21,7 +21,11 @@ public class IntervalTask {
                 if(Config.rootNode.getNode("All",name,"Enable").getBoolean()
                         && Objects.equals(Config.rootNode.getNode("All", name, "ModeCode").getString(), "interval")){
 
-                    TextBuilder.builderAndSender(name);
+                    try {
+                        TextBuilder.builderAndSender(name);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                     Sponge.getServer().getConsole().sendMessage(
                             TextSerializers.FORMATTING_CODE.deserialize(

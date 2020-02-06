@@ -1,6 +1,7 @@
 package zyzgmc.icu.speaker;
 
 import com.google.inject.Inject;
+import me.rojo8399.placeholderapi.PlaceholderService;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.spec.CommandSpec;
@@ -18,17 +19,12 @@ import org.spongepowered.api.text.serializer.TextSerializers;
 import zyzgmc.icu.speaker.command.*;
 import zyzgmc.icu.speaker.command.Set;
 import zyzgmc.icu.speaker.config.Config;
-import zyzgmc.icu.speaker.tasks.FixTimeTask;
 import zyzgmc.icu.speaker.tasks.InitialTimer;
-import zyzgmc.icu.speaker.tasks.IntervalTask;
+
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-
-import static zyzgmc.icu.speaker.tasks.InitialTimer.fixTimerMap;
-import static zyzgmc.icu.speaker.tasks.InitialTimer.timerMap;
 
 @Plugin(
         id = "speaker",
@@ -47,6 +43,7 @@ public class Speaker {
 
     public static EconomyService economyService;
 
+    public static PlaceholderService placeholderService;
 
 
     @Inject
@@ -65,13 +62,14 @@ public class Speaker {
     }
 
 
+
     @Inject
     @ConfigDir(sharedRoot = false)
     public File folder;
 
 
     @Listener
-    public void reload(GameReloadEvent event) throws IOException {
+    public void reload(GameReloadEvent event) {
         try {
             Config.load();
         } catch (IOException e) {
@@ -85,6 +83,18 @@ public class Speaker {
     public void onServerStart(GameStartedServerEvent event) {
 
         try {
+            placeholderService = (PlaceholderService) Sponge.getServiceManager().provideUnchecked(PlaceholderService.class);
+        }catch (Exception e){
+            Sponge.getServer().getConsole().sendMessage(
+                    Text.of(
+                            TextColors.RED,
+                            "未检测到PlaceHolder"
+                    )
+            );
+        }
+
+
+        try {
             Config.setup(folder);
             Config.load();
         } catch (IOException e) {
@@ -92,7 +102,6 @@ public class Speaker {
         }
 
         instance = this;
-
         CommandSpec speaker = CommandSpec.builder()
                 .description(Text.of("显示版本信息"))
                 .permission("speaker.command.base")
@@ -114,7 +123,7 @@ public class Speaker {
         welcome.add(TextSerializers.FORMATTING_CODE.deserialize("&bSpeaker &6已加载"));
         PaginationList.builder()
                 .title(Text.of(TextColors.LIGHT_PURPLE,"SPEAKER"))
-                .padding(Text.of(TextColors.GREEN))
+                .padding(Text.of(TextColors.GREEN,"="))
                 .contents(welcome)
                 .sendTo(Sponge.getServer().getConsole());
 

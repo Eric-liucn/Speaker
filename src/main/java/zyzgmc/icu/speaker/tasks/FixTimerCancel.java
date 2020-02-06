@@ -10,7 +10,6 @@ public class FixTimerCancel {
             ) {
                 fixTimerMap.get(name).get(key).cancel();
                 fixTimerMap.get(name).get(key).purge();
-                //fixTimerMap.get(name).remove(key);
             }
             fixTimerMap.remove(name);
         }
