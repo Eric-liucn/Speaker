@@ -36,8 +36,8 @@ public class Reload implements CommandExecutor {
 
 
         try {
-            Config.save();
             Config.load();
+            Config.save();
         } catch (IOException e) {
             e.printStackTrace();
         }

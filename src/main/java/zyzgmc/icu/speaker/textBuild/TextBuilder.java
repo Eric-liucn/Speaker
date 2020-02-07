@@ -138,19 +138,53 @@ public class TextBuilder {
                  ) {
                 ServerBossBar bar=ServerBossBar.builder()
                         .percent(1.0f)
+                        .color(BossBarColors.PURPLE)
                         .overlay(BossBarOverlays.PROGRESS)
                         .name(Text.of("None"))
-                        .color(BossBarColors.PURPLE)
                         .visible(false)
                         .build();
+
+                if(color.equals("BLUE")){
+                    bar.setColor(BossBarColors.BLUE);
+                }else if (color.equals("YELLOW")){
+                    bar.setColor(BossBarColors.YELLOW);
+                }else if (color.equals("WHITE")){
+                    bar.setColor(BossBarColors.WHITE);
+                }else if (color.equals("GREEN")){
+                    bar.setColor(BossBarColors.GREEN);
+                }else if(color.equals("RED")){
+                    bar.setColor(BossBarColors.RED);
+                }else if (color.equals("PINK")){
+                    bar.setColor(BossBarColors.PINK);
+                }else {
+                    bar.setColor(BossBarColors.PURPLE);
+                }
+
                 bar.setName(
                         replaceDeal(content,player)
                 );
                 bar.addPlayer(player);
                 bar.setVisible(true);
-                float per = 1f;
+                final float[] per = {1f};
                 float stayTimePer = (1/stayTime);
-                for (float i = stayTime; i > 0 ; i--) {
+                Timer timer=new Timer();
+                timer.scheduleAtFixedRate(
+                        new TimerTask() {
+                            @Override
+                            public void run() {
+                                per[0] = per[0] - (stayTimePer/10);
+                                if (per[0] <= 0) {
+                                    bar.setVisible(false);
+                                    this.cancel();
+                                } else {
+                                    bar.setPercent(per[0]);
+                                }
+                            }
+                        },0,100
+                );
+
+
+                /*for (float i = stayTime; i > 0 ; i--) {
                     per = per -stayTimePer;
                     if(per>0) {
                         Thread.sleep(1000);
@@ -158,10 +192,10 @@ public class TextBuilder {
                     }else {
                         bar.setVisible(false);
                         break;
-                    }
+                    }*/
                 }
             }
-        }
+
     }
 
 
