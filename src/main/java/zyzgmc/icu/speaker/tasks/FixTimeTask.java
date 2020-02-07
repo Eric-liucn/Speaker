@@ -57,11 +57,28 @@ public class FixTimeTask {
                                 Config.rootNode.getNode("All",name,"Enable").getBoolean()
                                         && Objects.equals(Config.rootNode.getNode("All", name, "ModeCode").getString(), "fix")
                         ){
-                            try {
-                                TextBuilder.builderAndSender(name);
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            if(Objects.equals(Config.rootNode.getNode("All", name, "Display").getString(), "normal")) {
+                                try {
+                                    TextBuilder.builderAndSender(name);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }else if (Objects.equals(Config.rootNode.getNode("All", name, "Display").getString(),"title")){
+                                try {
+                                    TextBuilder.titleBuilder(name);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            }else if (Objects.requireNonNull(Config.rootNode.getNode("All", name, "Display").getString()).equals("boss"))
+                            {
+                                try{
+                                    TextBuilder.bossBarBuilder(name);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
                             }
+
+
                             Sponge.getServer().getConsole().sendMessage(
                                     TextSerializers.FORMATTING_CODE.deserialize(
                                             Objects.requireNonNull(Config.rootNode.getNode("All", name, "Content").getString())

@@ -1,5 +1,6 @@
 package zyzgmc.icu.speaker.command;
 
+import org.spongepowered.api.boss.BossBarColors;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -37,6 +38,12 @@ public class Add implements CommandExecutor {
             Config.rootNode.getNode("All", Name, "Hover").setValue("使用 /spk set hover 公告名称 内容  来设置鼠标悬浮公告时显示的信息");
             Config.rootNode.getNode("All", Name, "Url").setValue("https://www.baidu.com");
             Config.rootNode.getNode("All", Name, "Cmd").setValue("/say 使用/spk set cmd 公告名称 指令  来设置点击公告时触发的指令");
+            Config.rootNode.getNode("All", Name, "Display").setValue("normal");
+            Config.rootNode.getNode("All", Name, "Setting","Title","持续时间").setValue(40);
+            Config.rootNode.getNode("All", Name, "Setting","Title","淡入时间").setValue(20);
+            Config.rootNode.getNode("All", Name, "Setting","Title","淡出时间").setValue(20);
+            Config.rootNode.getNode("All", Name, "Setting","Boss","持续时间").setValue(10);
+            Config.rootNode.getNode("All", Name, "Setting","Boss","颜色").setValue("BossBarColors.PURPLE");
             try {
                 Config.save();
                 Config.load();

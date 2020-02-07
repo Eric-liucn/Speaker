@@ -30,6 +30,7 @@ public class Set implements CommandExecutor {
                 .child(hoverChange.build(),"hover")
                 .child(urlChange.build(),"url")
                 .child(cmdChange.build(),"cmd")
+                .child(displayChange.build(),"display")
                 .executor(new Set())
                 .build();
     }
