@@ -43,8 +43,6 @@ public class Speaker {
 
     public static EconomyService economyService;
 
-    public static PlaceholderService placeholderService;
-
 
     @Inject
     private PluginContainer container;
@@ -82,14 +80,12 @@ public class Speaker {
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
 
-        try {
+        if(Sponge.getPluginManager().isLoaded("placeholderapi")) {
+            PlaceholderService placeholderService;
             placeholderService = (PlaceholderService) Sponge.getServiceManager().provideUnchecked(PlaceholderService.class);
-        }catch (Exception e){
+        }else {
             Sponge.getServer().getConsole().sendMessage(
-                    Text.of(
-                            TextColors.RED,
-                            "未检测到PlaceHolder"
-                    )
+                    Text.of(TextColors.RED,"未找到placeholderapi插件")
             );
         }
 

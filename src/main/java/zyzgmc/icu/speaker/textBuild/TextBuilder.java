@@ -10,6 +10,7 @@ import org.spongepowered.api.service.economy.account.UniqueAccount;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.Text.Builder;
 import org.spongepowered.api.text.action.TextActions;
+import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.serializer.TextSerializers;
 import zyzgmc.icu.speaker.Speaker;
 import zyzgmc.icu.speaker.config.Config;
@@ -18,7 +19,6 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.Optional;
 import static zyzgmc.icu.speaker.Speaker.economyService;
-import static zyzgmc.icu.speaker.Speaker.placeholderService;
 
 
 public class TextBuilder {
@@ -95,11 +95,15 @@ public class TextBuilder {
             str=str.replace("{Balance}", acc.getDefaultBalance(economyService.getDefaultCurrency()).toString());
         }
         Text text = Text.of(str);
-        try {
-            text = placeholderService.replaceSourcePlaceholders(str, player);
-        }catch (Exception e){
 
+        if(Sponge.getPluginManager().isLoaded("placeholderapi")) {
+            PlaceholderService placeholderService = (PlaceholderService) Sponge.getServiceManager().provideUnchecked(PlaceholderService.class);
+            text = placeholderService.replaceSourcePlaceholders(str, player);
+            return text;
+        }else {
+            text = TextSerializers.FORMATTING_CODE.deserialize(str);
+            return text;
         }
-        return text;
     }
+
 }
