@@ -4,15 +4,14 @@ import com.google.inject.Inject;
 import me.rojo8399.placeholderapi.PlaceholderService;
 import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.boss.BossBar;
-import org.spongepowered.api.boss.BossBarColors;
-import org.spongepowered.api.boss.BossBarOverlays;
-import org.spongepowered.api.boss.ServerBossBar;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.ConfigDir;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.game.GameReloadEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.game.state.GameStoppedEvent;
+import org.spongepowered.api.event.network.ClientConnectionEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.service.economy.EconomyService;
@@ -24,12 +23,15 @@ import zyzgmc.icu.speaker.command.*;
 import zyzgmc.icu.speaker.command.Set;
 import zyzgmc.icu.speaker.config.Config;
 import zyzgmc.icu.speaker.tasks.InitialTimer;
-import zyzgmc.icu.speaker.textBuild.TextBuilder;
+import zyzgmc.icu.speaker.tasks.JoinTask;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+
+import static zyzgmc.icu.speaker.tasks.InitialTimer.fixTimerMap;
+import static zyzgmc.icu.speaker.tasks.InitialTimer.timerMap;
 
 @Plugin(
         id = "speaker",
@@ -39,6 +41,7 @@ import java.util.*;
         authors = {
                 "EricLiu"
         },
+        version = "1.1",
         dependencies = {}
 )
 public class Speaker {
@@ -143,6 +146,54 @@ public class Speaker {
             economyService = serviceOpt.get();
         }
 
+    }
+
+    @Listener
+    public void onPlayerJoin(ClientConnectionEvent.Join event) throws Exception {
+        Player player = event.getTargetEntity();
+        for (String name:Config.nameCompletion
+             ) {
+            if(Config.rootNode.getNode("All",name,"Join").getBoolean() && Config.rootNode.getNode("All",name,"Enable").getBoolean()){
+                String display = Config.rootNode.getNode("All",name,"Display").getString();
+                if(display.equals("normal")){
+                    JoinTask.builderAndSender(name,player);
+                }else if (display.equals("title")){
+                    JoinTask.titleBuilder(name,player);
+                }else if (display.equals("boss")){
+                    JoinTask.bossBarBuilder(name,player);
+                }
+            }
         }
+    }
+
+    @Listener
+    public void onStop(GameStoppedEvent event){
+        for(String key:timerMap.keySet()){
+            timerMap.get(key).cancel();
+            timerMap.get(key).purge();
+        }
+        timerMap.clear();
+
+        for(String key:fixTimerMap.keySet()){
+            for(String k:fixTimerMap.get(key).keySet()){
+                fixTimerMap.get(key).get(k).cancel();
+                fixTimerMap.get(key).get(k).purge();
+            }
+            fixTimerMap.get(key).clear();
+        }
+        fixTimerMap.clear();
+
+        try {
+            Config.save();
+            Sponge.getServer().getConsole().sendMessage(
+                    TextSerializers.FORMATTING_CODE.deserialize(
+                            "&b[Speaker]: &a所有公告任务已关闭，配置已保存"
+                    )
+            );
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
 
 }

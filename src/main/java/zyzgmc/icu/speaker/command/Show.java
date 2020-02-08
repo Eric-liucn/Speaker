@@ -50,15 +50,27 @@ public class Show implements CommandExecutor {
                 fixTimeThis = fixTimeThis + " " + l;
             }
 
+            String display = Config.rootNode.getNode("All",name,"Display").getString();
+            Integer tiTleStay = Config.rootNode.getNode("All",name,"Setting","Title","持续时间").getInt();
+            Integer tiTleFadeIn = Config.rootNode.getNode("All",name,"Setting","Title","淡入时间").getInt();
+            Integer tiTleFadeout = Config.rootNode.getNode("All",name,"Setting","Title","淡出时间").getInt();
+            Integer bossStay = Config.rootNode.getNode("All",name,"Setting","Boss","持续时间").getInt();
+            String bossColor = Config.rootNode.getNode("All",name,"Setting","Boss","颜色").getString();
 
             if (mode.equals("fix")) {
                 List<Text> con = new ArrayList<>();
 
-                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告名称: &d%s", name)));
-                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告状态: &d%s", enable)));
-                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告模式: &d%s", modeString)));
-                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告时点: &d%s", fixTimeThis)));
-                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告内容: %s", contentThis)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告名称: &d%s", name)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告状态: &d%s", enable)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告模式: &d%s", modeString)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告时点: &d%s", fixTimeThis)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告内容: %s", contentThis)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告显示模式: &d%s",display)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bTitle模式显示持续时间: &d%d &e秒",tiTleStay)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bTitle模式显示淡入时间: &d%d &e秒",tiTleFadeIn)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bTitle模式显示淡出时间: &d%d &e秒",tiTleFadeout)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bBoss模式显示持续时间: &d%d &e秒",bossStay)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bBoss模式血条颜色: &d%s",bossColor)));
 
                 PaginationList.builder()
                         .title(Text.of(TextColors.YELLOW, "公告信息"))
@@ -68,11 +80,17 @@ public class Show implements CommandExecutor {
 
             } else if(mode.equals("interval")){
                 List<Text> cont = new ArrayList<>();
-                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告名称: &d%s", name)));
-                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告状态: &d%s", enable)));
-                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告模式: &d%s", modeString)));
-                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告间隔: &d%s", intervalThis)));
-                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&e公告内容: &d%s", contentThis)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告名称: &d%s", name)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告状态: &d%s", enable)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告模式: &d%s", modeString)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告间隔: &d%s", intervalThis)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告内容: &d%s", contentThis)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b公告显示模式: &d%s",display)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bTitle模式显示持续时间: &d%d &e秒",tiTleStay)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bTitle模式显示淡入时间: &d%d &e秒",tiTleFadeIn)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bTitle模式显示淡出时间: &d%d &e秒",tiTleFadeout)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bBoss模式显示持续时间: &d%d &e秒",bossStay)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bBoss模式血条颜色: &d%s",bossColor)));
 
                 PaginationList.builder()
                         .title(Text.of(TextColors.YELLOW, "公告信息"))

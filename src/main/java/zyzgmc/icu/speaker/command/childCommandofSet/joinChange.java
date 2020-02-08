@@ -14,21 +14,21 @@ import zyzgmc.icu.speaker.config.Config;
 
 import java.io.IOException;
 
-public class enableChange implements CommandExecutor {
+public class joinChange implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
 
         String name = args.<String>getOne("公告名称").get();
         Boolean status = args.<Boolean>getOne("true/false").get();
         if(!Config.rootNode.getNode("All",name).isVirtual()){
-            Config.rootNode.getNode("All",name,"Enable").setValue(status);
+            Config.rootNode.getNode("All",name,"Join").setValue(status);
             try{
                 Config.save();
                 Config.load();
             }catch (IOException e){
                 e.printStackTrace();
             }
-            src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("&a已将公告 &e%s &a的开启状态改为 &e%b",name,status)));
+            src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(String.format("&a已将公告 &e%s &a的进服显示状态改为 &e%b",name,status)));
         }else {
             src.sendMessage(Text.of(TextColors.RED,"该公告不存在，请检查名称！"));
         }
@@ -38,7 +38,7 @@ public class enableChange implements CommandExecutor {
 
     public static CommandSpec build(){
         return CommandSpec.builder()
-                .description(Text.of("改变公告的状态：开启/关闭"))
+                .description(Text.of("改变公告是否为加入游戏显示：开启/关闭"))
                 .arguments(
                         GenericArguments.seq(
                                 GenericArguments.onlyOne(
@@ -52,8 +52,8 @@ public class enableChange implements CommandExecutor {
                                 )
                         )
                 )
-                .executor(new enableChange())
-                .permission("speaker.command.set.enable")
+                .executor(new joinChange())
+                .permission("speaker.command.set.join")
                 .build();
     }
 }

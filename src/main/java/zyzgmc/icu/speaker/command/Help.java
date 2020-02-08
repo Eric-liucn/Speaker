@@ -30,7 +30,12 @@ public class Help implements CommandExecutor {
         help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set cmd&d---> &b设置一条公告点击指令（点击打开链接必须设置为空） "));
         help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set url&d---> &b设置一条公告点击网址（点击执行命令必须设置为空） "));
         help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set hover&d---> &b设置一条公告鼠标悬浮信息 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set title &d---> &b设置一条公告的title显示设定 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set boss &d---> &b设置一条公告的boss显示设定 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker set join &d---> &b设置一条公告的加入显示状态 "));
         help.add(TextSerializers.FORMATTING_CODE.deserialize("&espeaker reload &d---> &b重置插件 "));
+        help.add(TextSerializers.FORMATTING_CODE.deserialize("&e请访问网址:&d https://www.mcbbs.net/thread-953736-1-1.html &e获取详细说明 "));
+
 
         PaginationList.builder()
                 .contents(help)

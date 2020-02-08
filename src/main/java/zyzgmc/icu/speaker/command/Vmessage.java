@@ -16,7 +16,7 @@ public class Vmessage implements CommandExecutor {
 
         PaginationList.builder()
                 .title(Text.of(TextColors.LIGHT_PURPLE,"SPEAKER"))
-                .contents(TextSerializers.FORMATTING_CODE.deserialize("&6使用&b /speaker help &6或&b /spk help &6查看帮助信息"))
+                .contents(TextSerializers.FORMATTING_CODE.deserialize("&6使用&b /speaker help &6或&b /spk help &6查看帮助信息，当前版本：&d 1.1(Beta)"))
                 .padding(Text.of(TextColors.GREEN,"="))
                 .sendTo(src);
 

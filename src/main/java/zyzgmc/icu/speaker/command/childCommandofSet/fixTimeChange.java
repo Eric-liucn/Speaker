@@ -91,7 +91,7 @@ public class fixTimeChange implements CommandExecutor {
     public static CommandSpec build(){
         return CommandSpec.builder()
                 .description(Text.of("修改指定公告的间隔时间"))
-                .permission("speaker.command.set.content")
+                .permission("speaker.command.set.fix")
                 .arguments(
                         GenericArguments.seq(
                                 GenericArguments.onlyOne(

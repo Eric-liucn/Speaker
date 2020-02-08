@@ -14,14 +14,13 @@ public class Set implements CommandExecutor {
     @Override
     public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
 
-        src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize("&c请使用子命令: content/fix/interval/mode"));
+        src.sendMessage(TextSerializers.FORMATTING_CODE.deserialize("&c请使用子命令: content/fix/interval/mode/cmd/hover/display/join/boss/title/enable"));
         return CommandResult.success();
     }
 
     public static CommandSpec build(){
         return CommandSpec.builder()
                 .description(Text.of("设置公告信息"))
-                .permission("speaker.command.set")
                 .child(modeChange.build(),"mode")
                 .child(contentChange.build(),"content")
                 .child(intervalChange.build(),"interval")
@@ -31,6 +30,9 @@ public class Set implements CommandExecutor {
                 .child(urlChange.build(),"url")
                 .child(cmdChange.build(),"cmd")
                 .child(displayChange.build(),"display")
+                .child(tiTileChange.build(),"title")
+                .child(bossChange.build(),"boss")
+                .child(joinChange.build(),"join")
                 .executor(new Set())
                 .build();
     }

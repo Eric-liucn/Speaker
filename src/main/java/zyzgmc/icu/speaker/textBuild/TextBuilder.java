@@ -107,9 +107,9 @@ public class TextBuilder {
                         ).build()
                 );
 
-                builder.fadeIn(Config.rootNode.getNode("All",name,"Setting","Title","淡入时间").getInt());
-                builder.fadeOut(Config.rootNode.getNode("All",name,"Setting","Title","淡出时间").getInt());
-                builder.stay(titleStay);
+                builder.fadeIn(Config.rootNode.getNode("All",name,"Setting","Title","淡入时间").getInt()*20);
+                builder.fadeOut(Config.rootNode.getNode("All",name,"Setting","Title","淡出时间").getInt()*20);
+                builder.stay(titleStay*20);
 
                 builder.subtitle(
                         Text.builder().append(
