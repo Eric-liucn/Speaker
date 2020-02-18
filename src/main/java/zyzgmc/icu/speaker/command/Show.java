@@ -56,6 +56,7 @@ public class Show implements CommandExecutor {
             Integer tiTleFadeout = Config.rootNode.getNode("All",name,"Setting","Title","淡出时间").getInt();
             Integer bossStay = Config.rootNode.getNode("All",name,"Setting","Boss","持续时间").getInt();
             String bossColor = Config.rootNode.getNode("All",name,"Setting","Boss","颜色").getString();
+            boolean join = Config.rootNode.getNode("All",name,"Setting","Boss","颜色").getBoolean();
 
             if (mode.equals("fix")) {
                 List<Text> con = new ArrayList<>();
@@ -71,6 +72,7 @@ public class Show implements CommandExecutor {
                 con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bTitle模式显示淡出时间: &d%d &e秒",tiTleFadeout)));
                 con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bBoss模式显示持续时间: &d%d &e秒",bossStay)));
                 con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bBoss模式血条颜色: &d%s",bossColor)));
+                con.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b进服显示: &d%b",join)));
 
                 PaginationList.builder()
                         .title(Text.of(TextColors.YELLOW, "公告信息"))
@@ -91,6 +93,7 @@ public class Show implements CommandExecutor {
                 cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bTitle模式显示淡出时间: &d%d &e秒",tiTleFadeout)));
                 cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bBoss模式显示持续时间: &d%d &e秒",bossStay)));
                 cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&bBoss模式血条颜色: &d%s",bossColor)));
+                cont.add(TextSerializers.FORMATTING_CODE.deserialize(String.format("&b进服显示: &d%b",join)));
 
                 PaginationList.builder()
                         .title(Text.of(TextColors.YELLOW, "公告信息"))

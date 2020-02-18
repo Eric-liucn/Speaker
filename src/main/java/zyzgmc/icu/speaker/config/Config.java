@@ -70,14 +70,14 @@ public class Config {
         rootNode.getNode("All","欢迎","Interval").setValue(45).setComment("单位：秒");
         rootNode.getNode("All","欢迎","FixTime").setValue(Arrays.asList(realtime));
         rootNode.getNode("All", "欢迎", "Hover").setValue("&a使用 &e/spk set hover 公告名称 内容  &a来设置鼠标悬浮公告时显示的信息");
-        rootNode.getNode("All", "欢迎", "Url").setValue("None").setComment("例：https://www.baidu.com(仅输入域名无效，错误示例： baidu.com 或者 www.baidu.com) \n如果要启用点击公共打开链接，请将Cmd设置为None");
+        rootNode.getNode("All", "欢迎", "Url").setValue("None");
         rootNode.getNode("All", "欢迎", "Cmd").setValue("/say 使用/spk set cmd 公告名称 指令  来设置点击公告时触发的指令");
         rootNode.getNode("All", "欢迎", "Display").setValue("normal");
         rootNode.getNode("All", "欢迎", "Setting","Title","持续时间").setValue(2);
         rootNode.getNode("All", "欢迎", "Setting","Title","淡入时间").setValue(1);
         rootNode.getNode("All", "欢迎", "Setting","Title","淡出时间").setValue(1);
         rootNode.getNode("All", "欢迎", "Setting","Boss","持续时间").setValue(10);
-        rootNode.getNode("All", "欢迎", "Setting","Boss","颜色").setValue("BossBarColors.PURPLE");
+        rootNode.getNode("All", "欢迎", "Setting","Boss","颜色").setValue("PURPLE");
         rootNode.getNode("All","欢迎","Join").setValue(true);
     }
 
