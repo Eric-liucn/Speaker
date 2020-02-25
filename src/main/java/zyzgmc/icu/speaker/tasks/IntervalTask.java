@@ -15,7 +15,7 @@ import java.util.TimerTask;
 public class IntervalTask {
     public static Timer thisTimer;
 
-    public static Timer intervalTask(String name){
+    public static Timer intervalTask(String name, double delay){
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -70,7 +70,7 @@ public class IntervalTask {
 
 
             }
-        }, 1000, Config.rootNode.getNode("All",name,"Interval").getInt() * 1000);
+        }, (long) (delay*1000), Config.rootNode.getNode("All",name,"Interval").getInt() * 1000);
         thisTimer = timer;
         return thisTimer;
     }

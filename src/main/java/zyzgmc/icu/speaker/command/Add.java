@@ -15,6 +15,7 @@ import zyzgmc.icu.speaker.config.Config;
 import zyzgmc.icu.speaker.tasks.IntervalTask;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.Arrays;
 
 import static zyzgmc.icu.speaker.tasks.InitialTimer.timerMap;
@@ -43,15 +44,17 @@ public class Add implements CommandExecutor {
             Config.rootNode.getNode("All", Name, "Setting","Title","淡入时间").setValue(1);
             Config.rootNode.getNode("All", Name, "Setting","Title","淡出时间").setValue(1);
             Config.rootNode.getNode("All", Name, "Setting","Boss","持续时间").setValue(10);
-            Config.rootNode.getNode("All", Name, "Setting","Boss","颜色").setValue("BossBarColors.PURPLE");
+            Config.rootNode.getNode("All", Name, "Setting","Boss","颜色").setValue("PURPLE");
             Config.rootNode.getNode("All",Name,"Join").setValue(false);
+            Config.rootNode.getNode("All",Name,"DelayOnStart").setValue(0.2);
             try {
                 Config.save();
                 Config.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            timerMap.put(Name,IntervalTask.intervalTask(Name));
+            double delay = Config.rootNode.getNode("All",Name,"DelayOnStart").getDouble();
+            timerMap.put(Name,IntervalTask.intervalTask(Name,delay));
         }
 
         return CommandResult.success();

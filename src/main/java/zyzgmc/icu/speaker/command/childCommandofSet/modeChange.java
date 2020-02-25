@@ -65,7 +65,8 @@ public class modeChange implements CommandExecutor {
                    }
                }else {
                    FixTimerCancel.cancelFixTimer(name);
-                   timerMap.put(name,IntervalTask.intervalTask(name));
+                   double delay = Config.rootNode.getNode("All",name,"DelayOnStart").getDouble();
+                   timerMap.put(name,IntervalTask.intervalTask(name,delay));
                }
 
            }

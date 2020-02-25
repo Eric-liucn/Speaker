@@ -79,6 +79,7 @@ public class Config {
         rootNode.getNode("All", "欢迎", "Setting","Boss","持续时间").setValue(10);
         rootNode.getNode("All", "欢迎", "Setting","Boss","颜色").setValue("PURPLE");
         rootNode.getNode("All","欢迎","Join").setValue(true);
+        rootNode.getNode("All","欢迎","DelayOnStart").setValue(0.1);
     }
 
 

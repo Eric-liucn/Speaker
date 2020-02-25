@@ -39,7 +39,8 @@ public class intervalChange implements CommandExecutor {
 
             if(Objects.requireNonNull(Config.rootNode.getNode("All", name, "ModeCode").getString()).equals("interval")){
                 TimerTaskCancel.cancelTask(name);
-                timerMap.put(name,IntervalTask.intervalTask(name));
+                double delay = Config.rootNode.getNode("All",name,"DelayOnStart").getDouble();
+                timerMap.put(name,IntervalTask.intervalTask(name,delay));
             }else {
                 src.sendMessage(
                         TextSerializers.FORMATTING_CODE.deserialize(

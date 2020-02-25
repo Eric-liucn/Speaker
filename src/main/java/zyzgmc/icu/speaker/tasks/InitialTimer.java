@@ -30,7 +30,8 @@ public class InitialTimer {
                         )
                 );
                 IntervalTask test = new IntervalTask();
-                timerMap.put(name,test.intervalTask(name));
+                double delay = Config.rootNode.getNode("All",name,"DelayOnStart").getDouble();
+                timerMap.put(name,test.intervalTask(name,delay));
             } else if (Config.rootNode.getNode("All",name,"ModeCode").getString().equals("fix")){
                 Sponge.getServer().getConsole().sendMessage(
                         TextSerializers.FORMATTING_CODE.deserialize(
